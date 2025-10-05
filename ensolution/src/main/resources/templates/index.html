@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EN Solution - Cleaning Services</title>
+    <style>
+       body {
+           font-family: 'Roboto', sans-serif;
+           margin: 0;
+           padding: 0;
+           background: #f8fafc;
+           color: #2d3748;
+           line-height: 1.6;
+       }
+
+       /* HEADER (stays same) */
+header {
+   background: white;
+   color: black;
+   padding: 20px 40px;
+   position: sticky;
+   top: 0;
+   z-index: 100;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+   margin: 0;
+   font-size: 2.2rem;
+   font-weight: 700;
+   text-align: center;
+}
+
+/* NEW NAV BAR */
+nav {
+   background: linear-gradient(135deg, #a8ff78, #78ffd6);
+   padding: 15px 0;
+   display: flex;
+   justify-content: center;
+   gap: 30px;
+   position: sticky;
+   top: 88px; /* so it stays below the header */
+   z-index: 99;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+nav a {
+   color: white;
+   text-decoration: none;
+   font-weight: 600;
+   font-size: 1.1rem;
+   transition: color 0.3s ease;
+}
+
+nav a:hover {
+   color: #3843a1; /* green hover effect */
+}
+
+
+
+
+       /* HERO SECTION */
+       .hero {
+           height: 100vh;
+           background: url("/images/cleaning-bg.jpg") no-repeat center center/cover;
+           display: flex;
+           align-items: flex-end;
+           justify-content: flex-start;
+           padding: 40px;
+           position: relative;
+           overflow: hidden;
+       }
+
+       .hero::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0, 0.4); /* Subtle overlay for readability */
+           z-index: 0;
+       }
+
+       .highlight-text {
+           background: linear-gradient(135deg, #a8ff78, #78ffd6);
+           color: #1a202c;
+           padding: 20px 30px;
+           border-radius: 15px;
+           font-size: 2.8rem;
+           font-weight: 700;
+           line-height: 1.4;
+           position: relative;
+           z-index: 1;
+           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+           margin-bottom: 100px; /* Adjusted for better positioning */
+           animation: fadeInUp 1s ease-out;
+       }
+
+       .highlight-text .italic {
+           font-style: italic;
+       }
+
+       @keyframes fadeInUp {
+           from {
+               opacity: 0;
+               transform: translateY(20px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       /* SERVICES */
+       section {
+           padding: 60px 20px;
+           max-width: 1200px;
+           margin: 0 auto;
+           text-align: center;
+       }
+
+       section h2 {
+           font-size: 2.5rem;
+           color: #2c3e50;
+           margin-bottom: 40px;
+           position: relative;
+       }
+
+       section h2::after {
+           content: '';
+           width: 60px;
+           height: 4px;
+           background: #38a169;
+           display: block;
+           margin: 10px auto;
+           border-radius: 2px;
+       }
+
+       .services {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+           gap: 30px;
+           margin-top: 20px;
+       }
+
+       .service-card {
+           background: white;
+           border-radius: 12px;
+           box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+           padding: 20px;
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+       }
+
+       .service-card:hover {
+           transform: translateY(-8px);
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+       }
+
+       .service-card img {
+           width: 100%;
+           height: 180px;
+           object-fit: cover;
+           border-radius: 10px;
+           margin-bottom: 15px;
+       }
+
+       .service-card h3 {
+           margin: 10px 0;
+           color: #2c3e50;
+           font-size: 1.5rem;
+       }
+
+       .service-card p {
+           color: #4a5568;
+           font-size: 1rem;
+       }
+
+       /* WHY HIRE US */
+       #whyhireus {
+           background: #f1f5f9;
+           border-radius: 12px;
+           max-width: 900px;
+           margin: 40px auto;
+           padding: 40px;
+           box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+           text-align: left;
+       }
+
+       #whyhireus h2 {
+           text-align: center;
+           color: #2c3e50;
+           margin-bottom: 30px;
+       }
+
+       #whyhireus p {
+           color: #4a5568;
+           font-size: 1.1rem;
+           line-height: 1.8;
+       }
+
+       /* CONTACT */
+       #contact p {
+           font-size: 1.2rem;
+           margin: 10px 0;
+       }
+
+       #contact a {
+           color: #38a169;
+           text-decoration: none;
+           font-weight: 600;
+           transition: color 0.2s ease;
+       }
+
+       #contact a:hover {
+           color: #2f855a;
+       }
+
+       /* FOOTER */
+       footer {
+           background: #2c3e50;
+           color: white;
+           padding: 30px 20px;
+           text-align: center;
+       }
+
+       footer p {
+           margin: 0;
+           font-size: 1rem;
+       }
+
+       footer a {
+           color: #f1c40f;
+           text-decoration: none;
+           margin: 0 10px;
+           font-weight: 600;
+           transition: color 0.2s ease;
+       }
+
+       footer a:hover {
+           color: #f6e05e;
+       }
+
+       /* RESPONSIVE DESIGN */
+       @media (max-width: 768px) {
+           .hero {
+               padding: 20px;
+           }
+
+           .highlight-text {
+               font-size: 2rem;
+               padding: 15px 20px;
+               margin-bottom: 50px;
+           }
+
+           header {
+               padding: 15px 20px;
+           }
+
+           header h1 {
+               font-size: 1.8rem;
+           }
+
+           nav {
+               flex-direction: column;
+               gap: 10px;
+           }
+
+           nav a {
+               font-size: 1rem;
+               padding: 10px;
+           }
+
+           section {
+               padding: 40px 15px;
+           }
+
+           .service-card {
+               width: 100%;
+               max-width: 350px;
+               margin: 0 auto;
+           }
+       }
+
+       @media (max-width: 480px) {
+           .highlight-text {
+               font-size: 1.6rem;
+               padding: 10px 15px;
+           }
+
+           section h2 {
+               font-size: 2rem;
+           }
+
+           .service-card img {
+               height: 150px;
+           }
+       }
+
+       .header-content {
+           display: flex;
+           align-items: center;
+           justify-content: center; /* keeps title centered */
+           position: relative;
+       }
+
+       .logo {
+           height: 94px;   /* adjust to your liking */
+           width: 140px;
+           position: absolute;
+           left: 20px;     /* pushes it to the left side */
+       }
+
+
+    </style>
+
+</head>
+<body>
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <img src="/images/Company-logo.jpg" alt="Company Logo" class="logo">
+        <h1>EN Solution</h1>
+    </div>
+</header>
+
+
+<nav>
+    <a href="#services">Services</a>
+    <a href="#whyhireus">Why Hire Us</a>
+    <a href="#contact">Contact</a>
+    <a href="/register" class="btn-register">Register</a>
+</nav>
+
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1 class="highlight-text">
+        Exceptional Home <br>Cleaning Services
+    </h1>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+        <div class="service-card">
+            <img src="/images/home-cleaning.jpg" alt="Home Cleaning">
+            <h3>Home Cleaning</h3>
+            <p>Keep your home fresh, clean, and welcoming with our expert services.</p>
+        </div>
+        <div class="service-card">
+            <img src="/images/office-cleaning.jpg" alt="Office Cleaning">
+            <h3>Office Cleaning</h3>
+            <p>Boost productivity with a tidy and hygienic workspace.</p>
+        </div>
+        <div class="service-card">
+            <img src="/images/deep-cleaning.jpg" alt="Deep Cleaning">
+            <h3>Deep Cleaning</h3>
+            <p>From kitchens to carpets, we handle the tough jobs.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHY HIRE US -->
+<section id="whyhireus">
+    <h2>Why Hire Us</h2>
+    <p>
+        At <strong>EN Solution</strong>, we believe a clean space is the foundation of comfort,
+        productivity, and well-being. Our dedicated team goes beyond simple cleaning –
+        we bring professionalism, attention to detail, and care to every project.
+        With flexible scheduling, eco-friendly products, and highly trained staff,
+        we guarantee results that make your home or office shine.
+        Choosing us means choosing reliability, trust, and top-quality service every time.
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:info@ensolution.com">info@ensolution.com</a></p>
+    <p>Phone: +355 68 123 4567</p>
+    <p>Address: Tirana, Albania</p>
+</section>
+
+<!--<h3>Registered Users:</h3>
+<ul>
+    <th:block th:each="user : ${users}">
+        <li>
+            <b th:text="${user.name}"></b> -
+            <span th:text="${user.email}"></span>
+        </li>
+    </th:block>
+</ul>-->
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2025 EN Solution. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
